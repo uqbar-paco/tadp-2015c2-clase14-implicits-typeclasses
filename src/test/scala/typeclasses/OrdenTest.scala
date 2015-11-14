@@ -18,6 +18,15 @@ class OrdenTest extends Specification {
       List(eva, adan).sorted mustEqual List(adan, eva)
     }
 
+    "puedo usar el orden" in {
+      def comparar[A:Ordering](x: A, y: A) = implicitly[Ordering[A]].lt(x,y)
+      def compararConOperadores[A](x: A, y: A)(implicit orden: Ordering[A]) = {
+        import orden._
+        x < y
+      }
+      compararConOperadores(1, 2) must beTrue
+    }
+
   }
 
 }
