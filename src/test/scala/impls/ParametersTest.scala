@@ -4,7 +4,7 @@ import org.specs2.mutable.Specification
 
 class ParametersTest extends Specification {
 
-  "Implicits Conversions" should {
+  "Implicits Parameters" should {
 
     val adan = Persona("Adan")
     val eva = Persona("Eva")
@@ -14,12 +14,12 @@ class ParametersTest extends Specification {
       Parameters.saluda(adan) mustEqual "Hola Adan?"
     }
 
-    "convertir un string a Persona" in {
+    "saluda con sorpresa" in {
       import Parameters.admiracion
       Parameters.saluda(adan) mustEqual "Hola Adan!"
     }
 
-    "adan puede procrear con un string" in {
+    "saluda custom" in {
       val config = new Config {
         def fin = " :)"
       }

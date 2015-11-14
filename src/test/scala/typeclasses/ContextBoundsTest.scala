@@ -5,7 +5,7 @@ import org.specs2.mutable.Specification
 
 class ContextBoundsTest extends Specification {
 
-  "Implicits Conversions" should {
+  "Context Bounds" should {
 
     val adan = Persona("Adan")
 

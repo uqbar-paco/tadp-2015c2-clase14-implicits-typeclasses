@@ -2,8 +2,10 @@ package impls
 
 import typeclasses.ContextBounds.Saludador
 
-case class Persona(nombre: String, padre: Option[Persona] = None, madre: Option[Persona] = None) {
+case class Persona(nombre: String, padre: Option[Persona] = None, madre: Option[Persona] = None) extends Ordered[Persona] {
   def procrearCon(persona: Persona) = Persona(nombre + " jr.", Some(this), Some(persona))
+
+  override def compare(that: Persona): Int = nombre.compareTo(that.nombre)
 }
 
 object Persona {
@@ -16,6 +18,16 @@ object Persona {
   implicit object PersonaSaludadora extends Saludador[Persona] {
     override def saluda(t: Persona): String = Conversions.saluda(t)
   }
+
+  object OrdenPorNombreManual extends Ordering[Persona] {
+    override def compare(x: Persona, y: Persona) = x.nombre.compareTo(y.nombre)
+  }
+
+  object OrdenPorNombreImplicito extends Ordering[Persona] {
+    override def compare(x: Persona, y: Persona) = implicitly[Ordering[String]].compare(x.nombre, y.nombre)
+  }
+
+  //implicit val orden = OrdenPorNombreImplicito
 }
 
 object Conversions {
