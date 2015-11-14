@@ -1,0 +1,10 @@
+.worksheet
+.idea
+.project
+.classpath
+*.iml
+.cache-main
+.cache-tests
+out
+bin
+target
