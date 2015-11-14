@@ -1,5 +1,7 @@
 package impls
 
+import typeclasses.ContextBounds.Saludador
+
 case class Persona(nombre: String, padre: Option[Persona] = None, madre: Option[Persona] = None) {
   def procrearCon(persona: Persona) = Persona(nombre + " jr.", Some(this), Some(persona))
 }
@@ -9,6 +11,10 @@ object Persona {
 
   implicit class PersonaOps(persona: Persona) {
     def saludaImplicito(end: String) = Conversions.saluda(persona) + end
+  }
+
+  implicit object PersonaSaludadora extends Saludador[Persona] {
+    override def saluda(t: Persona): String = Conversions.saluda(t)
   }
 }
 
