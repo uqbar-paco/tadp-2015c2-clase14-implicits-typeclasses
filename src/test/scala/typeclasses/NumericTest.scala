@@ -14,9 +14,9 @@ class NumericTest  extends Specification {
       List(3, 1, 2).sum mustEqual 6
     }
 
-    "puedo ordenar una lista de Personas" in {
-      List(eva, adan).sorted mustEqual List(adan, eva)
-    }
+//    "puedo ordenar una lista de Personas" in {
+//      List(eva, adan).sorted mustEqual List(adan, eva)
+//    }
 
   }
 

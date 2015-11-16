@@ -27,10 +27,10 @@ class ConversionsTest extends Specification {
       import Conversions.personaToPersonaQueSaluda
       adan.saluda mustEqual "Hola Adan"
     }
-    "persona que saluda con implicit def" in {
-      val a: Persona = "Adan"
-      "Adan" mustEqual adan
-    }
+//    "persona que saluda con implicit def" in {
+//      val a: Persona = "Adan"
+//      "Adan" mustEqual adan
+//    }
 
 
 
