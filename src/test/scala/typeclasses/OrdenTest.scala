@@ -15,14 +15,22 @@ class OrdenTest extends Specification {
     }
 
     "puedo ordenar una lista de Personas" in {
+      implicit object PersonaOrder extends Ordering[Persona] {
+        override def compare(x: Persona, y: Persona): Int =
+          x.nombre.compareTo(y.nombre)
+      }
       List(eva, adan).sorted mustEqual List(adan, eva)
     }
 
     "puedo usar el orden" in {
-      def comparar[A:Ordering](x: A, y: A) = implicitly[Ordering[A]].lt(x,y)
-      def compararConOperadores[A](x: A, y: A)(implicit orden: Ordering[A]) = {
-        import orden._
-        x < y
+      def comparar[A:Ordering](x: A, y: A) =
+        implicitly[Ordering[A]].lt(x,y)
+
+      def compararConOperadores[A:Ordering]
+      (x: A, y: A) = {
+        val a = implicitly[Ordering[A]]
+        import a.mkOrderingOps
+        x.<(y)
       }
       compararConOperadores(1, 2) must beTrue
     }

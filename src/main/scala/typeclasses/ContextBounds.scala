@@ -6,6 +6,10 @@ object ContextBounds {
     def saluda(t: T): String
   }
 
-  def saludo[A: Saludador](a: A) = implicitly[Saludador[A]].saluda(a)
-  
+  def saludo[A](a: A)(implicit x: Saludador[A]) =
+    x.saluda(a)
+
+  def otra[A: Saludador](a: A) =
+    saludo(a)
+
 }
